@@ -1,0 +1,11 @@
+- main [ref=e2]:
+  - heading "Tori Ford" [level=1] [ref=e3]
+  - img "Fallin' Tides by Tori Ford — coming August 2026" [ref=e5]:
+    - generic [ref=e9]:
+      - generic [ref=e10]: Fallin'
+      - generic [ref=e11]: Tides
+    - generic [ref=e13]: Tori Ford
+  - generic [ref=e16]:
+    - paragraph [ref=e17]: Coming Soon
+    - paragraph [ref=e18]: August 2026
+  - paragraph [ref=e19]: "Trade Paperback (ISBN: 123456789) | Ebook (ISBN: 123456789)"

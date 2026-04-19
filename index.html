@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tori Ford - Romance Author | Fallin' Tides Coming August 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@1,700;1,900&family=Ewert&family=Rye&family=Notable&family=Dancing+Script:wght@700&family=Style+Script&family=Sacramento&family=Homemade+Apple&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg:          #c8dcf5;
+            --bg-card:     #ffffff;
+            --fg:          #0d1829;
+            --fg-muted:    #3a5474;
+            --fg-dim:      #7a9ab8;
+            --border:      #a8c4e0;
+            --blue:        #1d4ed8;
+            --blue-dim:    rgba(29,78,216,0.08);
+            --cover-bg:    #0d2a5c;
+            --cover-gold:  #90c0f8;
+            --cover-text:  #f0f6ff;
+        }
+
+        body { height: 100%; }
+
+        body {
+            background:
+                linear-gradient(160deg,
+                    #daeeff 0%,
+                    #c2dcf8 30%,
+                    #a8c8f0 65%,
+                    #90b4e8 100%
+                );
+        }
+
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            background-image: url('bg-pattern.jpg');
+            background-size: 1100px;
+            background-repeat: repeat;
+            background-position: center;
+            mix-blend-mode: multiply;
+            opacity: 0.22;
+            -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, black 25%, transparent 75%);
+            mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, black 25%, transparent 75%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Ensure page content sits above pattern overlay */
+        header, main {
+            position: relative;
+            z-index: 1;
+        }
+
+        body {
+            color: var(--fg);
+            font-family: 'Outfit', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* ─── HERO NAME ───────────────────────────────── */
+
+        .hero-name {
+            font-family: 'Notable', sans-serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            color: #5a8ec8;
+            text-align: center;
+            line-height: 1;
+            margin-bottom: 3.5rem;
+            animation: fadeDown 0.55s ease both;
+            letter-spacing: 0.02em;
+        }
+
+        /* ─── MAIN ────────────────────────────────────── */
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3.5rem 2rem 4.5rem;
+        }
+
+        /* ─── BOOK COVER ──────────────────────────────── */
+
+        .book-wrapper {
+            margin-bottom: 3rem;
+            animation: fadeUp 0.6s 0.1s ease both;
+        }
+
+        .book-cover-wrap {
+            position: relative;
+            width: fit-content;
+        }
+
+        .book-cover {
+            width: 255px;
+            height: 382px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px 6px 6px 2px;
+            box-shadow: -5px 5px 10px 0px #303030;
+        }
+
+        /* Spine */
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            width: 11px; height: 100%;
+            background: linear-gradient(to right, #040810, #06101e, #091528);
+            z-index: 20;
+        }
+
+        /* Page edge */
+        .book-cover::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 0;
+            width: 5px; height: 100%;
+            background: linear-gradient(to left, #c0bab2, #ddd8d0, #c0bab2);
+            z-index: 20;
+        }
+
+
+        /* Plain cover background */
+        .cover-fill {
+            position: absolute;
+            inset: 0;
+            background: var(--cover-bg);
+        }
+
+        /* Subtle inner glow on cover */
+        .cover-glow {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 40% at 50% 45%, rgba(96,165,250,0.08) 0%, transparent 70%);
+        }
+
+        /* Thin blue rules */
+        .cover-rule {
+            position: absolute;
+            left: 18px; right: 8px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(144,192,248,0.5), transparent);
+        }
+        .cover-rule.top    { top: 24px; }
+        .cover-rule.bottom { bottom: 102px; }
+
+        /* Corner brackets */
+        .cover-corner {
+            position: absolute;
+            width: 16px; height: 16px;
+            border-color: rgba(144,192,248,0.4);
+            border-style: solid;
+        }
+        .cover-corner.tl { top: 30px;     left: 20px;  border-width: 1px 0 0 1px; }
+        .cover-corner.tr { top: 30px;     right: 10px; border-width: 1px 1px 0 0; }
+        .cover-corner.bl { bottom: 108px; left: 20px;  border-width: 0 0 1px 1px; }
+        .cover-corner.br { bottom: 108px; right: 10px; border-width: 0 1px 1px 0; }
+
+        /* Title block */
+        .cover-title-area {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 8px 0 12px;
+            text-align: center;
+            z-index: 7;
+        }
+
+        .cover-title {
+            font-family: 'Sacramento', cursive;
+            font-style: italic;
+            line-height: 1;
+            color: var(--cover-text);
+        }
+
+        .cover-title .line1 {
+            display: block;
+            font-size: 72px;
+            letter-spacing: -0.01em;
+        }
+
+        .cover-title .line2 {
+            display: block;
+            font-size: 80px;
+            letter-spacing: -0.01em;
+            color: var(--cover-gold);
+            margin-top: 2px;
+        }
+
+        .cover-divider {
+            width: 28px;
+            height: 1px;
+            background: rgba(144,192,248,0.45);
+            margin: 16px auto 0;
+        }
+
+        /* Author name at bottom of cover */
+        .cover-author {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 180px 16px 18px 20px;
+            text-align: center;
+            background: linear-gradient(to top, rgba(3,7,14,0.97) 0%, rgba(3,7,14,0.55) 65%, transparent 100%);
+            z-index: 5;
+        }
+
+        .cover-author-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(241,245,249,0.88);
+        }
+
+        .cover-title-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 7;
+        }
+
+        /* Hover gloss */
+        .cover-gloss {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.03) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+        .book-cover:hover .cover-gloss { opacity: 1; }
+
+        /* ─── FLOAT LAYOUT ───────────────────────────── */
+
+        .book-section {
+            max-width: 900px;
+            width: 100%;
+            animation: fadeUp 0.6s 0.15s ease both;
+            overflow: visible;
+        }
+
+        .book-section .book-wrapper {
+            float: left;
+            margin-left: 20px;
+            margin-right: 40px;
+            margin-top: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ─── RELEASE INFO ────────────────────────────── */
+
+        .release-block {
+            margin-bottom: 1.5rem;
+        }
+
+        .book-title-display {
+            font-family: 'Style Script', cursive;
+            font-style: italic;
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
+            color: var(--fg);
+            line-height: 1;
+            margin-bottom: 0.35rem;
+            letter-spacing: 0.02em;
+        }
+
+        .release-date {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 0;
+        }
+
+        /* ─── BLURB ───────────────────────────────────── */
+
+        .blurb-release {
+            font-family: 'Homemade Apple', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--fg);
+            line-height: 1.2;
+            margin-top: 10px;
+            margin-bottom: calc(0.5rem + 10px);
+            padding-left: 15px;
+        }
+
+        .blurb-title {
+            font-family: 'Notable', sans-serif;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 400;
+            color: var(--fg);
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+        }
+
+        .blurb {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--fg);
+            line-height: 1.75;
+        }
+
+        .blurb .tagline {
+            display: block;
+            font-family: 'Homemade Apple', cursive;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #5a8ec8;
+            line-height: 1.75;
+            padding-left: 15px;
+        }
+
+        .blurb p {
+            margin-bottom: 0.85rem;
+        }
+
+        .blurb p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ─── AUTHOR PHOTO ───────────────────────────── */
+
+        .author-photo {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 135px;
+            height: 135px;
+            object-fit: cover;
+            border-radius: 50%;
+            z-index: 9999;
+        }
+
+        /* ─── ISBN ────────────────────────────────────── */
+
+        .cover-isbn {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--fg-muted);
+            letter-spacing: 0.03em;
+            text-align: center;
+            margin-top: 0.75rem;
+            line-height: 1.6;
+        }
+
+        /* ─── FOOTER ─────────────────────────────────── */
+
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 1.25rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-copy {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 400;
+            color: var(--fg-muted);
+            letter-spacing: 0.03em;
+        }
+
+        .footer-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--fg-muted);
+            background: rgba(255,255,255,0.5);
+            transition: background 0.18s ease, color 0.18s ease,
+                        border-color 0.18s ease, transform 0.18s ease;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-btn svg {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .newsletter-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            background: transparent;
+            color: #5a8ec8;
+            border: 2px solid #5a8ec8;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.18s ease, transform 0.18s ease;
+        }
+
+        .newsletter-btn:hover {
+            background: rgba(90, 142, 200, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .footer-icon:hover {
+            background: #5a8ec8;
+            color: #ffffff;
+            border-color: #5a8ec8;
+            transform: translateY(-2px);
+        }
+
+        .footer-icon svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        @media (max-width: 680px) {
+            .book-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            .book-section .book-wrapper {
+                float: none;
+                margin: 15px auto 1.5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .blurb-release {
+                float: none;
+                width: 100%;
+                text-align: center;
+                padding-left: 0;
+            }
+
+            .blurb {
+                float: none;
+                width: 100%;
+                text-align: left;
+                padding-left: 0;
+            }
+
+            .blurb .tagline {
+                padding-left: 0;
+            }
+
+            .blurb-release {
+                padding-left: 0;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 1rem;
+            }
+
+            .newsletter-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            footer { padding: 1.25rem 1.5rem; }
+        }
+
+        /* ─── ANIMATIONS ──────────────────────────────── */
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── RESPONSIVE ──────────────────────────────── */
+
+        @media (max-width: 480px) {
+            header { padding: 1.2rem 1.5rem; }
+            .book-cover { width: 215px; height: 323px; }
+            .cover-title .line1 { font-size: 42px; }
+            .cover-title .line2 { font-size: 48px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-pattern" aria-hidden="true"></div>
+
+    <!-- ── MAIN ───────────────────────────────────── -->
+    <main>
+
+        <h1 class="hero-name">Tori Ford</h1>
+
+        <div class="book-section">
+
+            <!-- Left: book cover -->
+            <div class="book-wrapper">
+                <div class="book-cover-wrap">
+                    <div class="book-cover"
+                         role="img"
+                         aria-label="Fallin' Tides by Tori Ford — coming August 2026">
+
+                        <div class="cover-fill"></div>
+                        <div class="cover-glow"></div>
+
+                        <div class="cover-author">
+                            <div class="cover-author-name">Tori Ford</div>
+                        </div>
+
+                        <div class="cover-title-area">
+                            <img src="cover-title.png" alt="Fallin' Tides" class="cover-title-img"/>
+                        </div>
+
+                        <div class="cover-gloss" aria-hidden="true"></div>
+
+                    </div>
+                    <img src="Tori-Ford-Photo.jpg" alt="Tori Ford" class="author-photo">
+                </div>
+                <p class="cover-isbn">
+                    Trade Paperback | ISBN 979-8-9958372-0-6<br>
+                    E-book | ISBN 979-8-9958372-1-3
+                </p>
+            </div>
+
+            <!-- Blurb wraps around cover -->
+            <p class="blurb-release">Coming August 2026</p>
+            <div class="blurb">
+                <span class="tagline">Gilmore Girls meets The Notebook in this small town romance with heart, humor, and heat.</span>
+                <p>Colt Mitchell was a charity case, taken in by the prominent Sinclair family to keep their star quarterback son on track. After three years under their roof, Colt traded in his broken background for the Marines, dead set on leaving Holly River for good.</p>
+                <p>Alice Sinclair was a dreamer, growing up in a house that worshipped trophies. Colt, her brother's best friend, was the only one who truly saw her. When he left, Alice flooded his mailbox with hope—letters he devoured, but rarely answered.</p>
+                <p>Until the last one arrived.</p>
+                <p>Now Colt Mitchell is back. And the kid sister he remembers is gone. In her place is a woman on a mission. Alice has three months to turn her childhood home into the bookshop of her dreams, or lose it forever. And Colt's hell bent on ensuring that happens, because when Colt was deployed, Alice's letters saved him. And now he's come home to repay the favor.</p>
+                <p>But as the two race to finish renovations by the fall festival, and the heat between them rises, Colt realizes that the one woman who's entirely off limits…is the exact one he wants.</p>
+            </div>
+
+        </div>
+
+        <div class="cta-buttons">
+            <a href="https://tr.ee/gX36kvPQh-" target="_blank" rel="noopener noreferrer" class="newsletter-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Sign up for the Newsletter
+            </a>
+            <a href="https://www.instagram.com/heytoriford" target="_blank" rel="noopener noreferrer" class="newsletter-btn instagram-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                Follow Tori on Instagram
+            </a>
+            <a href="https://www.goodreads.com/author/show/toriford" target="_blank" rel="noopener noreferrer" class="newsletter-btn goodreads-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" style="width:16px;height:16px;flex-shrink:0;margin-right:8px;"><path d="M11.43 23.995c-3.608-.208-6.274-2.077-6.448-5.078.695.007 1.375.013 2.07.02.224 1.342 1.434 2.462 3.083 2.65 2.583.23 4.602-1.61 4.672-4.072l.003-1.595c-.85 1.18-2.194 1.967-4.03 1.967C7.375 17.887 4.86 14.94 4.86 10.51c0-4.51 2.54-7.577 5.85-7.577 2.15 0 3.53.99 4.39 2.354l.02-1.97h2.05v13.59c0 4.823-2.876 7.122-5.74 7.088zM11.764 15.88c2.402 0 3.988-2.19 3.988-5.393 0-3.16-1.603-5.247-3.988-5.247-2.386 0-3.93 2.065-3.93 5.247 0 3.224 1.544 5.393 3.93 5.393z"/></svg>
+                Tori's Goodreads Page
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <span class="footer-copy">&copy; 2026 Tori Ford Books. All Rights Reserved.</span>
+        <div class="footer-icons">
+            <a href="https://www.instagram.com/heytoriford"
+               class="footer-icon"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/>
+                </svg>
+            </a>
+            <a href="https://www.goodreads.com/author/show/toriford"
+               class="footer-icon"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Goodreads">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <path d="M11.43 23.995c-3.608-.208-6.274-2.077-6.448-5.078.695.007 1.375.013 2.07.02.224 1.342 1.434 2.462 3.083 2.65 2.583.23 4.602-1.61 4.672-4.072l.003-1.595c-.85 1.18-2.194 1.967-4.03 1.967C7.375 17.887 4.86 14.94 4.86 10.51c0-4.51 2.54-7.577 5.85-7.577 2.15 0 3.53.99 4.39 2.354l.02-1.97h2.05v13.59c0 4.823-2.876 7.122-5.74 7.088zM11.764 15.88c2.402 0 3.988-2.19 3.988-5.393 0-3.16-1.603-5.247-3.988-5.247-2.386 0-3.93 2.065-3.93 5.247 0 3.224 1.544 5.393 3.93 5.393z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>

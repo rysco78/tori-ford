@@ -1,0 +1,21 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]: Tori Ford
+    - navigation "Social links" [ref=e4]:
+      - link "Instagram" [ref=e5] [cursor=pointer]:
+        - /url: https://www.instagram.com/heytoriford
+        - img [ref=e6]
+      - link "Newsletter" [ref=e10] [cursor=pointer]:
+        - /url: https://tr.ee/gX36kvPQh-
+        - img [ref=e11]
+  - main [ref=e14]:
+    - img "Fallin' Tides by Tori Ford — coming August 2026" [ref=e16]:
+      - img
+      - generic [ref=e26]:
+        - generic [ref=e27]: Fallin'
+        - generic [ref=e28]: Tides
+      - generic [ref=e31]: Tori Ford
+    - generic [ref=e34]:
+      - paragraph [ref=e35]: Coming Soon
+      - paragraph [ref=e36]: August 2026
+    - paragraph [ref=e37]: "Trade Paperback (ISBN: 123456789) | Ebook (ISBN: 123456789)"

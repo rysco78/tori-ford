@@ -1,0 +1,2 @@
+[      32ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8743/Users/ryanscott/Documents/Projects/tori-ford/index.html:0
+[      44ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8743/favicon.ico:0
