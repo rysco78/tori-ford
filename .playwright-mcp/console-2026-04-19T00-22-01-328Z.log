@@ -1,6 +1,0 @@
-[   16357ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://fonts.google.com/specimen/Rye:0
-[   41008ms] [ERROR] Framing 'https://accounts.google.com/' violates the following report-only Content Security Policy directive: "frame-ancestors 'self'". The violation has been logged, but no further action has been taken.
- @ :0
-[   42998ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://fonts.google.com/specimen/Smokum:0
-[   66435ms] [ERROR] Access to font at 'https://fonts.gstatic.com/l/font?kit=Yq6P-KqIXTD0t4D9z1ESnKM3-HpFabts6diywYik55jlLBcn&skey=a373f7129eaba270&v=v39' from origin 'https://fontsensei.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://fontsensei.com/tag/western:0
-[   66435ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://fonts.gstatic.com/l/font?kit=Yq6P-KqIXTD0t4D9z1ESnKM3-HpFabts6diywYik55jlLBcn&skey=a373f7129eaba270&v=v39:0
