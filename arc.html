@@ -559,8 +559,8 @@
                                aria-label="Your primary social account">
                     </div>
                     <div class="other-field" id="librarian-field-wrap">
-                        <label for="library-name" style="margin-top:0.5rem;display:block;">Library Name</label>
-                        <input type="text" id="library-name" name="library_name"
+                        <label for="library-name" id="venue-name-label" style="margin-top:0.5rem;display:block;">Library Name</label>
+                        <input type="text" id="library-name" name="venue_name"
                                placeholder="e.g. Springfield Public Library"
                                aria-label="Library name"
                                style="margin-bottom:0.75rem;">
@@ -711,6 +711,8 @@
                 const isOther = document.getElementById('role-other-radio').checked;
                 const isCreator = document.querySelector('input[name="role"][value="Content Creator"]').checked;
                 const isLibrarian = document.querySelector('input[name="role"][value="Librarian"]').checked;
+                const isBookseller = document.querySelector('input[name="role"][value="Bookseller"]').checked;
+                const showVenue = isLibrarian || isBookseller;
 
                 otherWrap.classList.toggle('visible', isOther);
                 otherInput.required = isOther;
@@ -719,9 +721,10 @@
                 creatorWrap.classList.toggle('visible', isCreator);
                 if (!isCreator) creatorInput.value = '';
 
-                librarianWrap.classList.toggle('visible', isLibrarian);
-                libraryName.required = isLibrarian;
-                if (!isLibrarian) { libraryName.value = ''; libraryCountry.value = ''; libraryCountryOther.value = ''; libraryCountryOtherWrap.style.display = 'none'; libraryCountryOther.required = false; libraryCity.value = ''; libraryState.value = ''; }
+                librarianWrap.classList.toggle('visible', showVenue);
+                libraryName.required = showVenue;
+                document.getElementById('venue-name-label').textContent = isBookseller ? 'Bookshop Name' : 'Library Name';
+                if (!showVenue) { libraryName.value = ''; libraryCountry.value = ''; libraryCountryOther.value = ''; libraryCountryOtherWrap.style.display = 'none'; libraryCountryOther.required = false; libraryCity.value = ''; libraryState.value = ''; }
             });
         });
 
@@ -755,7 +758,7 @@
                     role:            form.querySelector('input[name="role"]:checked')?.value || '',
                     role_other:      otherInput.value.trim(),
                     primary_social:  creatorInput.value.trim(),
-                    library_name:    libraryName.value.trim(),
+                    venue_name:      libraryName.value.trim(),
                     library_country:       libraryCountry.value === 'Other' ? libraryCountryOther.value.trim() : libraryCountry.value,
                     library_city:          libraryCity.value.trim(),
                     library_state:   libraryState.value.trim(),
