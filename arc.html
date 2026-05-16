@@ -487,20 +487,6 @@
 
     <main>
 
-        <a href="index.html" class="hero-name-link"><h1 class="hero-name">Tori Ford</h1></a>
-
-        <!-- Hero -->
-        <div class="arc-hero">
-            <div class="arc-cover">
-                <img src="Book-Cover-Fallin-Tides-Trim.png" alt="Fallin' Tides by Tori Ford">
-            </div>
-            <div class="arc-intro">
-                <h1>Request an Advance Copy</h1>
-                <p class="subtitle">Fallin' Tides — A Holly River Novel</p>
-                <p>Thank you for your interest in reading <em>Fallin' Tides</em> before it hits shelves in August 2026. Fill out the form below and Tori will be in touch with details on how to access your copy.</p>
-            </div>
-        </div>
-
         <!-- Form card -->
         <div class="form-card">
 
@@ -542,6 +528,12 @@
                             <span>Other</span>
                         </label>
                     </div>
+                    <div class="other-field" id="creator-field-wrap">
+                        <label for="primary-social" style="margin-top:0.5rem;display:block;">Your Primary Social Account</label>
+                        <input type="text" id="primary-social" name="primary_social"
+                               placeholder="@yourhandle or profile URL"
+                               aria-label="Your primary social account">
+                    </div>
                     <div class="other-field" id="other-field-wrap">
                         <input type="text" id="role-other" name="role_other"
                                placeholder="Tell us about your role…"
@@ -549,24 +541,7 @@
                     </div>
                 </div>
 
-                <!-- Optional social / web -->
-                <p class="form-section-label">Social &amp; Web <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:0.75rem;color:var(--fg-dim);">— all optional</span></p>
 
-                <div class="form-row">
-                    <div class="field-group">
-                        <label for="instagram">Instagram Handle <span class="optional">optional</span></label>
-                        <input type="text" id="instagram" name="instagram" placeholder="@yourhandle" autocomplete="off">
-                    </div>
-                    <div class="field-group">
-                        <label for="tiktok">TikTok Handle <span class="optional">optional</span></label>
-                        <input type="text" id="tiktok" name="tiktok" placeholder="@yourhandle" autocomplete="off">
-                    </div>
-                </div>
-
-                <div class="field-group">
-                    <label for="website">Website <span class="optional">optional</span></label>
-                    <input type="url" id="website" name="website" placeholder="https://yourblog.com" autocomplete="url">
-                </div>
 
                 <!-- Agreement -->
                 <p class="form-section-label">Agreement</p>
@@ -653,12 +628,20 @@
         const otherWrap = document.getElementById('other-field-wrap');
         const otherInput = document.getElementById('role-other');
 
+        const creatorWrap = document.getElementById('creator-field-wrap');
+        const creatorInput = document.getElementById('primary-social');
+
         radios.forEach(radio => {
             radio.addEventListener('change', () => {
                 const isOther = document.getElementById('role-other-radio').checked;
+                const isCreator = document.querySelector('input[name="role"][value="Content Creator"]').checked;
+
                 otherWrap.classList.toggle('visible', isOther);
                 otherInput.required = isOther;
                 if (!isOther) otherInput.value = '';
+
+                creatorWrap.classList.toggle('visible', isCreator);
+                if (!isCreator) creatorInput.value = '';
             });
         });
 
@@ -690,10 +673,8 @@
                     name:       form.name.value.trim(),
                     email:      form.email.value.trim(),
                     role:       form.querySelector('input[name="role"]:checked')?.value || '',
-                    role_other: otherInput.value.trim(),
-                    instagram:  form.instagram.value.trim(),
-                    tiktok:     form.tiktok.value.trim(),
-                    website:    form.website.value.trim(),
+                    role_other:     otherInput.value.trim(),
+                    primary_social: creatorInput.value.trim(),
                     agree:      String(form.agree.checked)
                 });
 
