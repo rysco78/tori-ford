@@ -28,9 +28,9 @@ function doPost(e) {
         'Email',
         'Role',
         'Role (Other)',
-        'Instagram',
-        'TikTok',
-        'Website',
+        'Primary Social',
+        'Library Name',
+        'Library Website',
         'Agreed to Terms'
       ]);
       sheet.setFrozenRows(1);
@@ -43,13 +43,13 @@ function doPost(e) {
 
     sheet.appendRow([
       new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }),
-      p.name        || '',
-      p.email       || '',
-      p.role        || '',
-      p.role_other  || '',
-      p.instagram   || '',
-      p.tiktok      || '',
-      p.website     || '',
+      p.name            || '',
+      p.email           || '',
+      p.role            || '',
+      p.role_other      || '',
+      p.primary_social  || '',
+      p.library_name    || '',
+      p.library_website || '',
       p.agree === 'true' ? 'Yes' : 'No'
     ]);
 

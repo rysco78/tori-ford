@@ -534,6 +534,17 @@
                                placeholder="@yourhandle or profile URL"
                                aria-label="Your primary social account">
                     </div>
+                    <div class="other-field" id="librarian-field-wrap">
+                        <label for="library-name" style="margin-top:0.5rem;display:block;">Library Name</label>
+                        <input type="text" id="library-name" name="library_name"
+                               placeholder="e.g. Springfield Public Library"
+                               aria-label="Library name"
+                               style="margin-bottom:0.75rem;">
+                        <label for="library-website">Library Website <span class="optional">(optional)</span></label>
+                        <input type="url" id="library-website" name="library_website"
+                               placeholder="https://yourlibrary.org"
+                               aria-label="Library website">
+                    </div>
                     <div class="other-field" id="other-field-wrap">
                         <input type="text" id="role-other" name="role_other"
                                placeholder="Tell us about your role…"
@@ -631,10 +642,15 @@
         const creatorWrap = document.getElementById('creator-field-wrap');
         const creatorInput = document.getElementById('primary-social');
 
+        const librarianWrap = document.getElementById('librarian-field-wrap');
+        const libraryName = document.getElementById('library-name');
+        const libraryWebsite = document.getElementById('library-website');
+
         radios.forEach(radio => {
             radio.addEventListener('change', () => {
                 const isOther = document.getElementById('role-other-radio').checked;
                 const isCreator = document.querySelector('input[name="role"][value="Content Creator"]').checked;
+                const isLibrarian = document.querySelector('input[name="role"][value="Librarian"]').checked;
 
                 otherWrap.classList.toggle('visible', isOther);
                 otherInput.required = isOther;
@@ -642,6 +658,10 @@
 
                 creatorWrap.classList.toggle('visible', isCreator);
                 if (!isCreator) creatorInput.value = '';
+
+                librarianWrap.classList.toggle('visible', isLibrarian);
+                libraryName.required = isLibrarian;
+                if (!isLibrarian) { libraryName.value = ''; libraryWebsite.value = ''; }
             });
         });
 
@@ -670,12 +690,14 @@
             try {
                 // Build payload — URLSearchParams avoids a CORS preflight
                 const payload = new URLSearchParams({
-                    name:       form.name.value.trim(),
-                    email:      form.email.value.trim(),
-                    role:       form.querySelector('input[name="role"]:checked')?.value || '',
-                    role_other:     otherInput.value.trim(),
-                    primary_social: creatorInput.value.trim(),
-                    agree:      String(form.agree.checked)
+                    name:            form.name.value.trim(),
+                    email:           form.email.value.trim(),
+                    role:            form.querySelector('input[name="role"]:checked')?.value || '',
+                    role_other:      otherInput.value.trim(),
+                    primary_social:  creatorInput.value.trim(),
+                    library_name:    libraryName.value.trim(),
+                    library_website: libraryWebsite.value.trim(),
+                    agree:           String(form.agree.checked)
                 });
 
                 // mode: 'no-cors' is required for Apps Script — response will be opaque
