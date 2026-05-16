@@ -30,7 +30,9 @@ function doPost(e) {
         'Role (Other)',
         'Primary Social',
         'Library Name',
-        'Library Website',
+        'Library Country',
+        'Library City',
+        'Library State',
         'Agreed to Terms'
       ]);
       sheet.setFrozenRows(1);
@@ -49,7 +51,9 @@ function doPost(e) {
       p.role_other      || '',
       p.primary_social  || '',
       p.library_name    || '',
-      p.library_website || '',
+      p.library_country || '',
+      p.library_city    || '',
+      p.library_state   || '',
       p.agree === 'true' ? 'Yes' : 'No'
     ]);
 

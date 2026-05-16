@@ -182,6 +182,30 @@
             margin-left: 0.3rem;
         }
 
+        select {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            background: #ffffff;
+            border: 1.5px solid var(--border-input);
+            border-radius: 7px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.97rem;
+            color: var(--fg);
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235a5650' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.9rem center;
+            padding-right: 2.5rem;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+            cursor: pointer;
+        }
+
+        select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+        }
+
         input[type="text"],
         input[type="email"],
         input[type="url"] {
@@ -540,10 +564,32 @@
                                placeholder="e.g. Springfield Public Library"
                                aria-label="Library name"
                                style="margin-bottom:0.75rem;">
-                        <label for="library-website">Library Website <span class="optional">(optional)</span></label>
-                        <input type="url" id="library-website" name="library_website"
-                               placeholder="https://yourlibrary.org"
-                               aria-label="Library website">
+                        <label for="library-country" style="display:block;">Country</label>
+                        <select id="library-country" name="library_country" style="margin-bottom:0.75rem;">
+                            <option value="">Select a country…</option>
+                            <option value="United States">United States</option>
+                            <option value="Canada">Canada</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Australia">Australia</option>
+                            <option value="New Zealand">New Zealand</option>
+                            <option value="Ireland">Ireland</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div>
+                                <label for="library-city" style="display:block;">City</label>
+                                <input type="text" id="library-city" name="library_city"
+                                       placeholder="e.g. Springfield"
+                                       aria-label="City">
+                            </div>
+                            <div>
+                                <label for="library-state" style="display:block;">State / Province</label>
+                                <input type="text" id="library-state" name="library_state"
+                                       placeholder="e.g. IL"
+                                       aria-label="State or province">
+                            </div>
+                        </div>
                     </div>
                     <div class="other-field" id="other-field-wrap">
                         <input type="text" id="role-other" name="role_other"
@@ -644,7 +690,9 @@
 
         const librarianWrap = document.getElementById('librarian-field-wrap');
         const libraryName = document.getElementById('library-name');
-        const libraryWebsite = document.getElementById('library-website');
+        const libraryCountry = document.getElementById('library-country');
+        const libraryCity = document.getElementById('library-city');
+        const libraryState = document.getElementById('library-state');
 
         radios.forEach(radio => {
             radio.addEventListener('change', () => {
@@ -661,7 +709,7 @@
 
                 librarianWrap.classList.toggle('visible', isLibrarian);
                 libraryName.required = isLibrarian;
-                if (!isLibrarian) { libraryName.value = ''; libraryWebsite.value = ''; }
+                if (!isLibrarian) { libraryName.value = ''; libraryCountry.value = ''; libraryCity.value = ''; libraryState.value = ''; }
             });
         });
 
@@ -696,7 +744,9 @@
                     role_other:      otherInput.value.trim(),
                     primary_social:  creatorInput.value.trim(),
                     library_name:    libraryName.value.trim(),
-                    library_website: libraryWebsite.value.trim(),
+                    library_country: libraryCountry.value,
+                    library_city:    libraryCity.value.trim(),
+                    library_state:   libraryState.value.trim(),
                     agree:           String(form.agree.checked)
                 });
 
