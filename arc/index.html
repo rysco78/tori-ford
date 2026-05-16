@@ -758,25 +758,22 @@
             btn.textContent = 'Submitting…';
 
             try {
-                // Build payload — URLSearchParams avoids a CORS preflight
-                const payload = new URLSearchParams({
+                const params = new URLSearchParams({
                     name:            form.name.value.trim(),
                     email:           form.email.value.trim(),
                     role:            form.querySelector('input[name="role"]:checked')?.value || '',
                     role_other:      otherInput.value.trim(),
                     primary_social:  creatorInput.value.trim(),
                     venue_name:      libraryName.value.trim(),
-                    library_country:       libraryCountry.value === 'Other' ? libraryCountryOther.value.trim() : libraryCountry.value,
-                    library_city:          libraryCity.value.trim(),
+                    library_country: libraryCountry.value === 'Other' ? libraryCountryOther.value.trim() : libraryCountry.value,
+                    library_city:    libraryCity.value.trim(),
                     library_state:   libraryState.value.trim(),
                     agree:           String(form.agree.checked)
                 });
 
-                // mode: 'no-cors' is required for Apps Script — response will be opaque
-                await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    mode:   'no-cors',
-                    body:   payload
+                await fetch(APPS_SCRIPT_URL + '?' + params.toString(), {
+                    method: 'GET',
+                    mode:   'no-cors'
                 });
             } catch (err) {
                 // Network failures still reach here; a no-cors opaque response does not
