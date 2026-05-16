@@ -565,17 +565,20 @@
                                aria-label="Library name"
                                style="margin-bottom:0.75rem;">
                         <label for="library-country" style="display:block;">Country</label>
-                        <select id="library-country" name="library_country" style="margin-bottom:0.75rem;">
+                        <select id="library-country" name="library_country" style="margin-bottom:0.5rem;">
                             <option value="">Select a country…</option>
                             <option value="United States">United States</option>
                             <option value="Canada">Canada</option>
                             <option value="United Kingdom">United Kingdom</option>
                             <option value="Australia">Australia</option>
-                            <option value="New Zealand">New Zealand</option>
-                            <option value="Ireland">Ireland</option>
-                            <option value="South Africa">South Africa</option>
                             <option value="Other">Other</option>
                         </select>
+                        <div id="library-country-other-wrap" style="display:none;margin-bottom:0.75rem;">
+                            <input type="text" id="library-country-other" name="library_country_other"
+                                   placeholder="Enter your country"
+                                   aria-label="Country name">
+                        </div>
+                        <div style="height:0.75rem;"></div>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
                             <div>
                                 <label for="library-city" style="display:block;">City</label>
@@ -691,8 +694,17 @@
         const librarianWrap = document.getElementById('librarian-field-wrap');
         const libraryName = document.getElementById('library-name');
         const libraryCountry = document.getElementById('library-country');
+        const libraryCountryOtherWrap = document.getElementById('library-country-other-wrap');
+        const libraryCountryOther = document.getElementById('library-country-other');
         const libraryCity = document.getElementById('library-city');
         const libraryState = document.getElementById('library-state');
+
+        libraryCountry.addEventListener('change', () => {
+            const isOther = libraryCountry.value === 'Other';
+            libraryCountryOtherWrap.style.display = isOther ? 'block' : 'none';
+            libraryCountryOther.required = isOther;
+            if (!isOther) libraryCountryOther.value = '';
+        });
 
         radios.forEach(radio => {
             radio.addEventListener('change', () => {
@@ -709,7 +721,7 @@
 
                 librarianWrap.classList.toggle('visible', isLibrarian);
                 libraryName.required = isLibrarian;
-                if (!isLibrarian) { libraryName.value = ''; libraryCountry.value = ''; libraryCity.value = ''; libraryState.value = ''; }
+                if (!isLibrarian) { libraryName.value = ''; libraryCountry.value = ''; libraryCountryOther.value = ''; libraryCountryOtherWrap.style.display = 'none'; libraryCountryOther.required = false; libraryCity.value = ''; libraryState.value = ''; }
             });
         });
 
@@ -744,8 +756,8 @@
                     role_other:      otherInput.value.trim(),
                     primary_social:  creatorInput.value.trim(),
                     library_name:    libraryName.value.trim(),
-                    library_country: libraryCountry.value,
-                    library_city:    libraryCity.value.trim(),
+                    library_country:       libraryCountry.value === 'Other' ? libraryCountryOther.value.trim() : libraryCountry.value,
+                    library_city:          libraryCity.value.trim(),
                     library_state:   libraryState.value.trim(),
                     agree:           String(form.agree.checked)
                 });
